@@ -1,0 +1,1 @@
+import { privateRoutes } from "./data";
