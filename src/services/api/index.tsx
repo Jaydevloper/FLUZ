@@ -1,4 +1,4 @@
-import axios from "../../../node_modules/axios/index";
+import axios from "axios";
 
 const api = axios.create({ baseURL: "", timeout: 30000 });
 
