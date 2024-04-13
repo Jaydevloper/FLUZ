@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
+import api from "services/api";
 
 interface IProps {
   url: string;
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 async function GetData({ url = "", params = null }) {
-  const res = await axios.get(url);
+  const res = await api.get(url);
   return res.data;
 }
 
