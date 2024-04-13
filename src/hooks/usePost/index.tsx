@@ -1,4 +1,5 @@
 import { AxiosRequestConfig, AxiosInstance } from "axios";
+import { useMutation } from "react-query";
 import api from "services/api";
 
 interface IApi {
@@ -20,6 +21,8 @@ async function postData(props: IProps) {
   return await typedApi[method](url, data, config);
 }
 
-const usePost = () => {};
+const usePost = ({ ...params }) => {
+  return useMutation(postData, params);
+};
 
 export default usePost;
