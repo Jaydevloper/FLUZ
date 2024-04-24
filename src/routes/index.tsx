@@ -1,6 +1,9 @@
+import Layout from "components/layout";
+import Spinner from "components/loader";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-const router = () => {
+const Home = lazy(() => import("modules/home"));
   return createBrowserRouter([
     {
       path: "/sign-up",
@@ -13,12 +16,12 @@ const router = () => {
     {
       path: "/",
       errorElement: <div>Error</div>,
-      element: <div>Header</div>,
-      loader: () => <div>Loading....</div>,
+      element: <Layout />,
+      loader: Spinner,
       children: [
         {
           index: true,
-          element: <div>Home</div>,
+          element: <Home />,
         },
       ],
     },
