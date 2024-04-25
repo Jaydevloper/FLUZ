@@ -1,26 +1,26 @@
-import { Avatar, Input, Layout, Menu, MenuProps } from "antd";
+import { DownOutlined, SmileOutlined } from "@ant-design/icons";
+import { Avatar, Dropdown, Input, Layout, Space } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { Outlet } from "react-router-dom";
-const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
+import { MenuProps } from "rc-menu";
+import { Link, Outlet } from "react-router-dom";
+
 const HeaderMenu = () => {
   return (
-    <header>
+    <div>
       <Layout>
         <Header className="flex items-center justify-between fixed z-50 w-full">
           <div className="flex items-center">
             <h1 className="text-[#108a00] font-bold text-base mr-4 cursor-pointer">
               FREELANCEUZ
             </h1>
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={["2"]}
-              items={items1}
-              className={"flex-1 min-w-1"}
-            />
+            <Dropdown className="ml-12" trigger={["click"]} menu={{ items }}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space className="text-white hover:text-[#108a00] text-base font-semibold">
+                  Ish topish
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
           </div>
           <div className="flex items-center gap-4">
             <Input
@@ -33,12 +33,23 @@ const HeaderMenu = () => {
             </Avatar>
           </div>
         </Header>
-        <Content className="mt-[64px]">
+        <Content className="mt-[64px]  container  ">
           <Outlet />
         </Content>
       </Layout>
-    </header>
+    </div>
   );
 };
 
 export default HeaderMenu;
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: <Link to="/">Saqlangan Ishlar</Link>,
+  },
+  {
+    key: "2",
+    label: <Link to="/">Mening Ishlarim</Link>,
+  },
+];

@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-button {
-  cursor: pointer;
-}
+@import "general";
+@import "normalize";
+@import "blocks/blocks";

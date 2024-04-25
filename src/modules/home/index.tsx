@@ -1,5 +1,13 @@
+import HomeHeader from "./components/HomeHeader";
+import List from "./components/List";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <HomeHeader />
+      <List />
+    </>
+  );
 };
 
 export default Home;

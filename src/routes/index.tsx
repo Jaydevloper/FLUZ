@@ -1,5 +1,7 @@
 import Layout from "components/layout";
 import Spinner from "components/loader";
+import MyJobs from "modules/jobs/pages/my-jobs";
+import SavedJobs from "modules/jobs/pages/saved";
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -23,6 +25,21 @@ const router = () => {
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: "/jobs/",
+          children: [
+            {
+              path: "saved/:id",
+              element: <SavedJobs />,
+              loader: Spinner,
+            },
+            {
+              path: "my-jobs/:id",
+              element: <MyJobs />,
+              loader: Spinner,
+            },
+          ],
         },
       ],
     },
