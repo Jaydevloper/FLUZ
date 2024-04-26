@@ -37,6 +37,7 @@ const HeaderMenu = () => {
             />
             <Tooltip
               placement="bottom"
+              color={"#fff"}
               title={<ContentHeader />}
               trigger="click"
             >

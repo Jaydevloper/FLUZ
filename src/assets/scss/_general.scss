@@ -58,6 +58,11 @@ ul {
 button {
   cursor: pointer;
 }
+a:hover {
+  svg {
+    fill: #69b1ff;
+  }
+}
 .ant-layout {
   background: #fff;
 }

@@ -6,6 +6,7 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 const Home = lazy(() => import("modules/home"));
+const ProfileInfo = lazy(() => import("modules/profile/pages/info"));
 const router = () => {
   return createBrowserRouter([
     {
@@ -32,12 +33,19 @@ const router = () => {
             {
               path: "saved/:id",
               element: <SavedJobs />,
-              loader: Spinner,
             },
             {
               path: "my-jobs/:id",
               element: <MyJobs />,
-              loader: Spinner,
+            },
+          ],
+        },
+        {
+          path: "/profile",
+          children: [
+            {
+              index: true,
+              element: <ProfileInfo />,
             },
           ],
         },
