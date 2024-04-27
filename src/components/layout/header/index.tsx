@@ -1,4 +1,4 @@
-import { DownOutlined, SmileOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Input, Layout, Space, Tooltip } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { MenuProps } from "rc-menu";
@@ -24,7 +24,7 @@ const HeaderMenu = () => {
             </Dropdown>
             <Link
               className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
-              to={"/"}
+              to={"/payment/history/"}
             >
               To'lov Tarixi
             </Link>

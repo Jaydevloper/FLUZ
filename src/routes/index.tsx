@@ -2,6 +2,7 @@ import Layout from "components/layout";
 import Spinner from "components/loader";
 import MyJobs from "modules/jobs/pages/my-jobs";
 import SavedJobs from "modules/jobs/pages/saved";
+import PaymentHistory from "modules/payment/pages/history";
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -46,6 +47,15 @@ const router = () => {
             {
               index: true,
               element: <ProfileInfo />,
+            },
+          ],
+        },
+        {
+          path: "/payment/",
+          children: [
+            {
+              path: "history/",
+              element: <PaymentHistory />,
             },
           ],
         },
