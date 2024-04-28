@@ -1,5 +1,13 @@
+import Layout from "components/layout";
+import Spinner from "components/loader";
+import MyJobs from "modules/jobs/pages/my-jobs";
+import SavedJobs from "modules/jobs/pages/saved";
+import PaymentHistory from "modules/payment/pages/history";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
+const Home = lazy(() => import("modules/home"));
+const ProfileInfo = lazy(() => import("modules/profile/pages/info"));
 const router = () => {
   return createBrowserRouter([
     {
@@ -13,12 +21,43 @@ const router = () => {
     {
       path: "/",
       errorElement: <div>Error</div>,
-      element: <div>Header</div>,
-      loader: () => <div>Loading....</div>,
+      element: <Layout />,
+      loader: Spinner,
       children: [
         {
           index: true,
-          element: <div>Home</div>,
+          element: <Home />,
+        },
+        {
+          path: "/jobs/",
+          children: [
+            {
+              path: "saved/:id",
+              element: <SavedJobs />,
+            },
+            {
+              path: "my-jobs/:id",
+              element: <MyJobs />,
+            },
+          ],
+        },
+        {
+          path: "/profile",
+          children: [
+            {
+              index: true,
+              element: <ProfileInfo />,
+            },
+          ],
+        },
+        {
+          path: "/payment/",
+          children: [
+            {
+              path: "history/",
+              element: <PaymentHistory />,
+            },
+          ],
         },
       ],
     },
