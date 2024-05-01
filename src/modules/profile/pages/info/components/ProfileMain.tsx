@@ -1,9 +1,18 @@
+import EditIcon from "assets/icons/EditIcon";
+import TitleModal from "./TitleModal";
+
 const ProFileMain = () => {
   return (
     <div>
       <div className="border-b-[1px] border-solid p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold">I'm a frontend developer</h2>
+          <h2 className="text-2xl font-bold flex items-center gap-3">
+            I'm a frontend developer
+            <span className="cursor-pointer">
+              <EditIcon />
+              <TitleModal />
+            </span>{" "}
+          </h2>
           <p className="text-base font-bold">$10</p>
         </div>
         <p className="text-base mt-4">

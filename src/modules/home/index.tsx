@@ -5,6 +5,7 @@ const Home = () => {
   return (
     <>
       <HomeHeader />
+
       <List />
     </>
   );

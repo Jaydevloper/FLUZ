@@ -40,6 +40,7 @@ const HeaderMenu = () => {
               color={"#fff"}
               title={<ContentHeader />}
               trigger="click"
+
             >
               <Avatar
                 className="bg-[#f56a00] cursor-pointer"
