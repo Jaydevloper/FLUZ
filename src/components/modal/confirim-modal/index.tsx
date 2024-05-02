@@ -8,6 +8,8 @@ const ConfirmModal = (props: IConfirimProps) => {
     cacelText = "Bekor qilish",
     title = "",
     children,
+    onOk = () => {},
+    onCancel = () => {},
     okButtonProps,
     modalProps,
   } = props;
@@ -17,6 +19,8 @@ const ConfirmModal = (props: IConfirimProps) => {
       <Modal
         open={open}
         title={<div className="w-full cursor-move">{title}</div>}
+        onCancel={onCancel}
+        onOk={onOk}
         okType="primary"
         okText={okText}
         cancelText={cacelText}

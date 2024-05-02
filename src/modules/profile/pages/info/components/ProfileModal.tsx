@@ -1,14 +1,13 @@
 import ConfirmModal from "components/modal/confirim-modal";
 import { IPropsModal } from "./modal.type";
-import { Input } from "antd";
 
-const TitleModal = (props: IPropsModal) => {
-  const { open = { titleModal: false }, setOpen } = props;
+const ProfileModal = (props: IPropsModal) => {
+  const { open = { profileModal: false }, setOpen } = props;
   return (
     <>
       <ConfirmModal
-        open={open?.titleModal}
-        title="Title"
+        open={open?.profileModal}
+        title="Profileni O'zgartirish"
         onCancel={() =>
           setOpen({
             titleModal: false,
@@ -17,11 +16,9 @@ const TitleModal = (props: IPropsModal) => {
             profileModal: false,
           })
         }
-      >
-        <Input placeholder="title" />
-      </ConfirmModal>
+      ></ConfirmModal>
     </>
   );
 };
 
-export default TitleModal;
+export default ProfileModal;

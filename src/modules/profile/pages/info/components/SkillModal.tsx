@@ -2,13 +2,13 @@ import ConfirmModal from "components/modal/confirim-modal";
 import { IPropsModal } from "./modal.type";
 import { Input } from "antd";
 
-const TitleModal = (props: IPropsModal) => {
-  const { open = { titleModal: false }, setOpen } = props;
+const SkillModal = (props: IPropsModal) => {
+  const { open = { skillModal: false }, setOpen } = props;
   return (
     <>
       <ConfirmModal
-        open={open?.titleModal}
-        title="Title"
+        open={open?.skillModal}
+        title="Qobiliyatlar"
         onCancel={() =>
           setOpen({
             titleModal: false,
@@ -18,10 +18,10 @@ const TitleModal = (props: IPropsModal) => {
           })
         }
       >
-        <Input placeholder="title" />
+        <Input placeholder="qobilyat" />
       </ConfirmModal>
     </>
   );
 };
 
-export default TitleModal;
+export default SkillModal;
