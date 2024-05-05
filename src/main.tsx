@@ -1,8 +1,10 @@
+import Spinner from "components/loader/index.js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
-import App from "./App.tsx";
-import "./index.css";
+import { Provider } from "react-redux";
+import App from "./App.jsx";
+import store from "./app/store";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,9 +18,11 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <React.Suspense fallback={<Spinner />}>
+        <App />
+      </React.Suspense>
     </QueryClientProvider>
-  </React.StrictMode>
+  </Provider>
 );

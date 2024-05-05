@@ -1,0 +1,76 @@
+* {
+  scroll-behavior: smooth !important;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  font-family: "Open Sans" !important;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  flex-grow: 1;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: block;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+  &:hover {
+    svg {
+      fill: #69b1ff;
+    }
+  }
+}
+a:hover {
+  svg {
+    fill: #69b1ff;
+  }
+}
+.ant-layout {
+  background: #fff;
+}
+.ant-tabs .ant-tabs-tab-btn {
+  color: #108a00;
+}
