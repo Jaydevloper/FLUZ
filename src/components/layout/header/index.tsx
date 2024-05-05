@@ -81,4 +81,8 @@ const items: MenuProps["items"] = [
     key: "2",
     label: <Link to="/jobs/my-jobs/1">Mening Ishlarim</Link>,
   },
+  {
+    key: "3",
+    label: <Link to="/jobs/create">Ish Joylash</Link>,
+  },
 ];

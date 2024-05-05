@@ -4,6 +4,8 @@ import Spinner from "components/loader";
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
+const SignUp = lazy(() => import("pages/SignUp"));
+const SignIn = lazy(() => import("pages/SignIn"));
 const Home = lazy(() => import("modules/home/info"));
 const ProfileInfo = lazy(() => import("modules/profile/pages/info"));
 const ProfileSettings = lazy(() => import("modules/profile/pages/settings"));
@@ -14,15 +16,16 @@ const PaymentHistory = lazy(() => import("modules/payment/pages/history"));
 const SavedJobs = lazy(() => import("modules/jobs/pages/saved"));
 const MyJobs = lazy(() => import("modules/jobs/pages/my-jobs"));
 const NotFound = lazy(() => import("pages/notfound"));
+const CreateJobs = lazy(() => import("modules/jobs/pages/create"));
 const router = () => {
   return createBrowserRouter([
     {
       path: "/sign-up",
-      element: <div>SignUp</div>,
+      element: <SignUp />,
     },
     {
       path: "/sign-in",
-      element: <div>SignUp</div>,
+      element: <SignIn />,
     },
     {
       path: "/",
@@ -48,6 +51,10 @@ const router = () => {
             {
               path: "my-jobs/:id",
               element: <MyJobs />,
+            },
+            {
+              path: "create/",
+              element: <CreateJobs />,
             },
           ],
         },
