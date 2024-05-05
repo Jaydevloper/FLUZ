@@ -5,7 +5,7 @@ const List = () => {
     <div>
       <ul>
         <li className="bg-[#f1f1f1] p-4 rounded-sm">
-          <Link className="text-[#108a00] text-base font-bold" to="/">
+          <Link className="text-[#108a00] text-base font-bold" to="/detail/2">
             Front-end Developer | Web Design | HTML, CSS, Bootstrap and JS
             required for new pages
           </Link>

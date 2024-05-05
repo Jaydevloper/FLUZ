@@ -1,11 +1,11 @@
 import List from "./components/List";
 
-const SavedJobs = () => {
+const TalentList = () => {
   return (
-    <div>
+    <>
       <List />
-    </div>
+    </>
   );
 };
 
-export default SavedJobs;
+export default TalentList;

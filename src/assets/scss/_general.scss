@@ -57,6 +57,11 @@ ul {
 
 button {
   cursor: pointer;
+  &:hover {
+    svg {
+      fill: #69b1ff;
+    }
+  }
 }
 a:hover {
   svg {

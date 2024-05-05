@@ -2,10 +2,13 @@ import { DownOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Input, Layout, Space, Tooltip } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { MenuProps } from "rc-menu";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import ContentHeader from "./components/Content";
 
 const HeaderMenu = () => {
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
     <div>
       <Layout>
@@ -24,6 +27,12 @@ const HeaderMenu = () => {
             </Dropdown>
             <Link
               className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
+              to={"/talents"}
+            >
+              Ta'lantlar
+            </Link>
+            <Link
+              className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
               to={"/payment/history/"}
             >
               To'lov Tarixi
@@ -36,14 +45,15 @@ const HeaderMenu = () => {
               placeholder="input search"
             />
             <Tooltip
+              open={open}
               placement="bottom"
               color={"#fff"}
-              title={<ContentHeader />}
-              trigger="click"
-
+              title={<ContentHeader setOpen={setOpen} />}
+              trigger={["click"]}
             >
               <Avatar
                 className="bg-[#f56a00] cursor-pointer"
+                onClick={() => setOpen(!open)}
                 size="large"
                 gap={1}
               >
@@ -52,7 +62,7 @@ const HeaderMenu = () => {
             </Tooltip>
           </div>
         </Header>
-        <Content className="mt-[64px]  container  ">
+        <Content className="mt-[64px] container">
           <Outlet />
         </Content>
       </Layout>
