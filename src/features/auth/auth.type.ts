@@ -1,5 +1,5 @@
-
 export interface IAuth {
-    token: string | null;
-    isLogin:boolean;
+  token: string | null;
+  role: string | null;
+  isLogin: boolean;
 }

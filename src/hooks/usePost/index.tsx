@@ -16,7 +16,7 @@ interface IProps {
   config?: AxiosRequestConfig;
 }
 interface IPostOptions {
-  onSuccess?: (data: object) => void;
+  onSuccess?: (data: object | any) => void;
   onError?: (data: object) => void;
 }
 

@@ -16,3 +16,18 @@ export interface IPropsModal {
     }>
   >;
 }
+
+export interface IData extends IPropsModal {
+  data: {
+    country: string;
+    createdAt: string;
+    createdBy: string;
+    description: string;
+    education: string;
+    name: string;
+    payment: number;
+    skills: string[];
+    title: string;
+    _id: string;
+  };
+}

@@ -45,7 +45,9 @@ const ContentHeader = ({
         <li>
           <button
             className="text-base py-3 text-[#000] flex items-center gap-2 hover:text-[#69b1ff]"
-            onClick={() => dispatch(SignOut())}
+            onClick={() => {
+              dispatch(SignOut());
+            }}
           >
             <LogoutIcon />
             Chiqish

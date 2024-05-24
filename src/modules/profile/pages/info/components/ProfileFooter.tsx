@@ -1,8 +1,10 @@
 import EditIcon from "assets/icons/EditIcon";
-import { IPropsModal } from "./modal.type";
 import EducationModal from "./EducationModal";
+import { IData } from "./modal.type";
+import useHooks from "hooks/useHooks";
 
-const ProfileFooter = ({ open, setOpen }: IPropsModal) => {
+const ProfileFooter = ({ open, setOpen, data }: IData) => {
+  const { get } = useHooks();
   return (
     <div className="border-solid border-[1px] rounded-s-lg mt-2 p-8">
       <h2 className="text-xl font-bold flex items-center gap-3">
@@ -15,11 +17,7 @@ const ProfileFooter = ({ open, setOpen }: IPropsModal) => {
         </span>
         <EducationModal open={open} setOpen={setOpen} />
       </h2>
-      <p className="text-base mt-2">
-        February 2022 - February 2022 I'm a frontend developer, technologies I
-        know Html Css Scss Boootstrap Javascript React my portfolio
-        https://jaydevpartfolio.netlify.app/
-      </p>
+      <p className="text-base mt-2">{get(data, "education", "")}</p>
     </div>
   );
 };

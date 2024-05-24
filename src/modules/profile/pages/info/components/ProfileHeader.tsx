@@ -4,8 +4,16 @@ import dayjs from "dayjs";
 import useGeoLocation from "hooks/useGeoLocation";
 import { IPropsModal } from "./modal.type";
 import ProfileModal from "./ProfileModal";
+import useHooks from "hooks/useHooks";
+interface IProps extends IPropsModal {
+  data: {
+    email: string;
+    name: string;
+  };
+}
 
-const ProfileHeader = ({ open, setOpen }: IPropsModal) => {
+const ProfileHeader = ({ open, setOpen, data }: IProps) => {
+  const { get } = useHooks();
   const { region, country } = useGeoLocation();
 
   return (
@@ -17,10 +25,10 @@ const ProfileHeader = ({ open, setOpen }: IPropsModal) => {
             size="large"
             gap={1}
           >
-            U
+            {get(data, "name", "")[0]?.toUpperCase()}
           </Avatar>
           <div className="ml-2">
-            <h1 className="font-semibold text-2xl">User</h1>
+            <h1 className="font-semibold text-2xl">{get(data, "name", "")}</h1>
             {region && country ? (
               <p className="text-[#676767] flex items-center">
                 <GeoLocationIcon />
