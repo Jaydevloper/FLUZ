@@ -4,8 +4,7 @@ import useHooks from "hooks/useHooks";
 const HomeHeader = () => {
   const { navigate, qs } = useHooks();
   return (
-    <div>
-      <div className="bg-[url('/src/assets/images/home-header.png')] bg-cover bg-center h-[300px]"></div>
+    <div className="pt-9">
       <h1 className="font-semibold text-3xl ">Ishlar ro'yxati</h1>
       <Tabs
         className="shadow-inherit"

@@ -30,4 +30,5 @@ export interface IData extends IPropsModal {
     title: string;
     _id: string;
   };
+  refetch: () => void;
 }

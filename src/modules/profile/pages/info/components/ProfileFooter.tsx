@@ -3,7 +3,7 @@ import EducationModal from "./EducationModal";
 import { IData } from "./modal.type";
 import useHooks from "hooks/useHooks";
 
-const ProfileFooter = ({ open, setOpen, data }: IData) => {
+const ProfileFooter = ({ open, setOpen, data, refetch }: IData) => {
   const { get } = useHooks();
   return (
     <div className="border-solid border-[1px] rounded-s-lg mt-2 p-8">
@@ -15,7 +15,12 @@ const ProfileFooter = ({ open, setOpen, data }: IData) => {
         >
           <EditIcon />
         </span>
-        <EducationModal open={open} setOpen={setOpen} />
+        <EducationModal
+          id={get(data, "_id", "")}
+          open={open}
+          setOpen={setOpen}
+          refetch={refetch}
+        />
       </h2>
       <p className="text-base mt-2">{get(data, "education", "")}</p>
     </div>

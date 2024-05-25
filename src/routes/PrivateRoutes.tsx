@@ -9,7 +9,6 @@ const TalentList = lazy(() => import("modules/talent/pages/talent-list"));
 const TalentDetail = lazy(() => import("modules/talent/pages/view"));
 const PaymentHistory = lazy(() => import("modules/payment/pages/history"));
 const SavedJobs = lazy(() => import("modules/jobs/pages/saved"));
-const MyJobs = lazy(() => import("modules/jobs/pages/my-jobs"));
 const CreateJobs = lazy(() => import("modules/jobs/pages/create"));
 
 export const PrivateRoutes = () => {
@@ -44,11 +43,7 @@ const data = [
         element: <SavedJobs />,
         access: ["talent"],
       },
-      {
-        path: "my-jobs/:id",
-        element: <MyJobs />,
-        access: ["talent"],
-      },
+
       {
         path: "create/",
         element: <CreateJobs />,

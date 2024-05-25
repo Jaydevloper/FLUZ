@@ -7,7 +7,7 @@ import useHooks from "hooks/useHooks";
 
 const ProfileInfo = () => {
   const { get } = useHooks();
-  const { data } = useGet({ url: "/users/info", name: "/user-info" });
+  const { data, refetch } = useGet({ url: "/users/info", name: "/user-info" });
   const [openModal, setOpenModal] = useState<{
     titleModal: boolean;
     skillModal: boolean;
@@ -24,11 +24,13 @@ const ProfileInfo = () => {
     <div>
       <div className="border-solid border-[1px] rounded-s-lg mt-12 ">
         <ProfileHeader
-          data={get(data, "users[0]", initialData)}
+          refetch={refetch}
+          data={get(data, "userInfo[0]", initialUserData)}
           open={openModal}
           setOpen={setOpenModal}
         />
         <ProFileMain
+          refetch={refetch}
           open={openModal}
           setOpen={setOpenModal}
           data={get(data, "userInfo[0]", initialUserData)}
@@ -36,6 +38,7 @@ const ProfileInfo = () => {
       </div>
       <footer>
         <ProfileFooter
+          refetch={refetch}
           open={openModal}
           setOpen={setOpenModal}
           data={get(data, "userInfo[0]", initialUserData)}
@@ -45,11 +48,6 @@ const ProfileInfo = () => {
   );
 };
 export default ProfileInfo;
-
-const initialData = {
-  email: "",
-  name: "",
-};
 
 const initialUserData = {
   country: "",

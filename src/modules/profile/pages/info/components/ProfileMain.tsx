@@ -4,9 +4,8 @@ import TitleModal from "./TitleModal";
 import { IData } from "./modal.type";
 import useHooks from "hooks/useHooks";
 
-const ProFileMain = ({ open, setOpen, data }: IData) => {
+const ProFileMain = ({ open, setOpen, data, refetch }: IData) => {
   const { get } = useHooks();
-  console.log("🚀 ~ ProFileMain ~ data:", data);
 
   return (
     <div>
@@ -20,7 +19,12 @@ const ProFileMain = ({ open, setOpen, data }: IData) => {
             >
               <EditIcon />
             </span>{" "}
-            <TitleModal open={open} setOpen={setOpen} />
+            <TitleModal
+              id={get(data, "_id", "")}
+              refetch={refetch}
+              open={open}
+              setOpen={setOpen}
+            />
           </h2>
           <p className="text-base font-bold">
             ${get(data, "payment", "")}/soat

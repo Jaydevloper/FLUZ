@@ -2,17 +2,11 @@ import { Avatar, Button } from "antd";
 import GeoLocationIcon from "assets/icons/GeoLocationIcon";
 import dayjs from "dayjs";
 import useGeoLocation from "hooks/useGeoLocation";
-import { IPropsModal } from "./modal.type";
-import ProfileModal from "./ProfileModal";
 import useHooks from "hooks/useHooks";
-interface IProps extends IPropsModal {
-  data: {
-    email: string;
-    name: string;
-  };
-}
+import ProfileModal from "./ProfileModal";
+import { IData } from "./modal.type";
 
-const ProfileHeader = ({ open, setOpen, data }: IProps) => {
+const ProfileHeader = ({ open, setOpen, data, refetch }: IData) => {
   const { get } = useHooks();
   const { region, country } = useGeoLocation();
 
@@ -47,7 +41,12 @@ const ProfileHeader = ({ open, setOpen, data }: IProps) => {
           Profile O'zgartirish
         </Button>
       </div>
-      <ProfileModal open={open} setOpen={setOpen} />
+      <ProfileModal
+        id={get(data, "_id", "")}
+        refetch={refetch}
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 };

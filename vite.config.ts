@@ -1,12 +1,13 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
+  plugins: [react()],
   resolve: {
     alias: {
       assets: path.resolve(__dirname, "./src/assets"),
+      data: path.resolve(__dirname, "./src/data"),
       store: path.resolve(__dirname, "./src/app"),
       routes: path.resolve(__dirname, "./src/routes"),
       modules: path.resolve(__dirname, "./src/modules"),
@@ -19,7 +20,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external:['app/store']
-    }
+      external: ["app/store"],
+    },
   },
-})
+});
