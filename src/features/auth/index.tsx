@@ -4,6 +4,7 @@ import { IAuth } from "./auth.type";
 const initialState: IAuth = {
   isLogin: false,
   token: null,
+  id: null,
   role: null,
 };
 
@@ -16,6 +17,7 @@ const authSlice = createSlice({
       state.isLogin = true;
       state.token = action.payload.token;
       state.role = action.payload.user.role;
+      state.id = action.payload.user._id;
       localStorage.setItem("persist", JSON.stringify(state));
       window.location.href = "/";
     },

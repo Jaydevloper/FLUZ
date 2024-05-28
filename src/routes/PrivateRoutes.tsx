@@ -10,7 +10,7 @@ const TalentDetail = lazy(() => import("modules/talent/pages/view"));
 const PaymentHistory = lazy(() => import("modules/payment/pages/history"));
 const SavedJobs = lazy(() => import("modules/jobs/pages/saved"));
 const CreateJobs = lazy(() => import("modules/jobs/pages/create"));
-
+const Chat = lazy(() => import("modules/chat/pages/list"));
 export const PrivateRoutes = () => {
   const persistRoot = JSON.parse(localStorage.getItem("persist") as string);
 
@@ -88,6 +88,15 @@ const data = [
         path: "view/:id",
         element: <TalentDetail />,
         access: ["customer", "talent"],
+      },
+    ],
+  },
+  {
+    path: "/message",
+    children: [
+      {
+        index: true,
+        element: <Chat />,
       },
     ],
   },

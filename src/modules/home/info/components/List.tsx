@@ -1,10 +1,17 @@
 import { Button, Rate } from "antd";
 import SaveIcon from "assets/icons/SaveIcon";
 import useHooks from "hooks/useHooks";
+import usePost from "hooks/usePost";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const List = ({ data = [] }) => {
+const List = ({ data = [], refetch = () => {} }) => {
   const { get } = useHooks();
+  const { mutate } = usePost({
+    onSuccess: refetch,
+    onError: (err) =>
+      toast.error(get(err, "response.data.message", "Xatolik yuz berdi")),
+  });
   return (
     <div>
       <ul className="flex flex-col gap-5">
@@ -43,9 +50,29 @@ const List = ({ data = [] }) => {
                   </span>
                 </div>
                 <div>
-                  <Rate />
-                  <Button type="text">
-                    <SaveIcon />
+                  <Rate
+                    onChange={(e) =>
+                      mutate({
+                        url: `/jobs/rate/${get(el, "_id")}`,
+                        method: "put",
+                        data: { rate: e },
+                      })
+                    }
+                    value={get(el, "rate", 0)}
+                  />
+                  <Button
+                    onClick={() =>
+                      mutate({
+                        url: `/jobs/rate/${get(el, "_id")}`,
+                        method: "put",
+                        data: { saveData: true },
+                      })
+                    }
+                    type="text"
+                  >
+                    <SaveIcon
+                      fill={get(el, "saveData", false) ? "blue" : "#000000"}
+                    />
                   </Button>
                 </div>
               </div>

@@ -33,9 +33,9 @@ const HeaderMenu = () => {
             </Link>
             <Link
               className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
-              to={"/payment/history/"}
+              to={"/message"}
             >
-              To'lov Tarixi
+              Chat
             </Link>
           </div>
           <div className="flex items-center gap-4">

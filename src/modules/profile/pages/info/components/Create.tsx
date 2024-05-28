@@ -5,39 +5,33 @@ import ContainerContent from "components/container-content";
 import { data } from "data";
 import useGeoLocation from "hooks/useGeoLocation";
 import useHooks from "hooks/useHooks";
-
 import usePost from "hooks/usePost";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const CreateFields = () => {
-  const { navigate, get } = useHooks();
+const Create = ({ refetch }: { refetch: () => void }) => {
+  const { get, navigate } = useHooks();
+  const [inputs, setInputs] = useState({});
   const { mutate, isLoading } = usePost({
     onSuccess: () => {
-      toast.success("Muvaffaqiyatli Yuborildi!");
-      navigate("/");
+      refetch(), toast.success("Muvaffaqiyatli Yuborildi");
+      navigate("");
     },
-    onError: (err) => {
-      toast.error("Yuborilmadi");
-      toast.error(get(err, "response.data.message", "Xatolik yuz berdi"));
-    },
+    onError: (err) =>
+      toast.error(get(err, "response.data.message", "Xatolik yuz berdi")),
   });
   const { country, region } = useGeoLocation();
-  const [inputs, setInputs] = useState({});
+  const roles = JSON.parse(localStorage.getItem("persist") as string);
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const formData = new FormData();
-    for (const [key, value] of Object.entries(inputs)) {
-      formData.append(key, value as string);
-    }
-    formData.append(
-      "country",
-      country && region ? `${country},${region}` : "Mavjud Emas"
-    );
     mutate({
-      url: "/jobs/create",
+      url: "/users/create",
       method: "post",
-      data: formData,
+      data: {
+        ...inputs,
+        country: country && region ? `${country},${region}` : "Mavjud Emas",
+        role: get(roles, "role", ""),
+      },
     });
   };
   return (
@@ -49,12 +43,12 @@ const CreateFields = () => {
             <div className="flex items-center justify-between">
               <section>
                 <label className="text-base mb-2 font-semibold" htmlFor="title">
-                  Sarlavha
+                  Profile Nomi
                 </label>
                 <Input
                   id="title"
                   onChange={(e) =>
-                    setInputs({ ...inputs, title: e.target.value })
+                    setInputs({ ...inputs, name: e.target.value })
                   }
                 />
               </section>
@@ -63,9 +57,9 @@ const CreateFields = () => {
                   Ish Turi
                 </label>
                 <Input
-                  id="type"
+                  id="title"
                   onChange={(e) =>
-                    setInputs({ ...inputs, type: e.target.value })
+                    setInputs({ ...inputs, title: e.target.value })
                   }
                 />
               </section>
@@ -97,20 +91,30 @@ const CreateFields = () => {
                 />
               </section>
             </div>
-
+            <section className="mt-6">
+              <label className="text-base mb-2 font-semibold" htmlFor="desc">
+                Ish turiga izohlar
+              </label>
+              <Input
+                id="desc"
+                onChange={(e) =>
+                  setInputs({ ...inputs, description: e.target.value })
+                }
+              />
+            </section>
             <label
               className="text-base mt-6 font-semibold inline-block"
-              htmlFor="description"
+              htmlFor="education"
             >
-              Qo'shimcah Izohlar
+              Ta'lim
             </label>
 
             <TextArea
               onChange={(e) =>
-                setInputs({ ...inputs, additionalInfo: e.target.value })
+                setInputs({ ...inputs, education: e.target.value })
               }
               className="mt-3"
-              id="description"
+              id="education"
             ></TextArea>
             <label
               className="text-base mt-6 font-semibold block"
@@ -152,4 +156,4 @@ const CreateFields = () => {
   );
 };
 
-export default CreateFields;
+export default Create;

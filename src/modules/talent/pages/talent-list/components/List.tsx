@@ -42,7 +42,7 @@ const List = ({ data }: IData) => {
               <div>
                 <Link
                   className="text-base font-semibold text-[#108a00]"
-                  to={`/talents/view/${get(el, "_id", "-")}`}
+                  to={`/talents/view/${get(el, "createdBy", "-")}`}
                 >
                   {get(el, "name", "-")}
                 </Link>

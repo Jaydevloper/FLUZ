@@ -4,12 +4,15 @@ import List from "./components/List";
 import useHooks from "hooks/useHooks";
 
 const Home = () => {
-  const { data } = useGet({ url: "/jobs/all", name: "/jobs-all" });
-  const { get } = useHooks();
+  const { get, query } = useHooks();
+  const { data, refetch } = useGet({
+    url: `/jobs/all?maxRate=${get(query, "key", "2")}`,
+    name: "/jobs-all",
+  });
   return (
     <>
       <HomeHeader />
-      <List data={get(data, "jobs", [])} />
+      <List data={get(data, "jobs", [])} refetch={refetch} />
     </>
   );
 };
