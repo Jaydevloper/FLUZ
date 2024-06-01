@@ -2,18 +2,22 @@ import useGet from "hooks/useGet";
 import Comments from "./components/Comments";
 import Details from "./components/Details";
 import useHooks from "hooks/useHooks";
+import Info from "./components/Info";
+import { roles } from "consts";
+import useAccess from "hooks/useAccess";
 
 const ViewList = () => {
   const { params, get } = useHooks();
+  const isCustomer = useAccess(roles.customer);
   const { data } = useGet({
     url: `/jobs/detail/${get(params, "id", "")}`,
     name: "/jobs-detail",
   });
-  console.log(data);
+
   return (
     <>
       <Details data={get(data, "job", initialData)} />
-      <Comments />
+      {isCustomer ? <Info /> : <Comments />}
     </>
   );
 };

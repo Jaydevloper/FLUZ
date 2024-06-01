@@ -7,12 +7,24 @@ import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-const ContentHeader = ({
-  setOpen,
-}: {
+interface IData {
+  data: {
+    country: string;
+    createdAt: string;
+    createdBy: string;
+    description: string;
+    education: string;
+    name: string;
+    payment: number;
+    skills: string[];
+    title: string;
+    _id: string;
+  };
   setOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const { navigate } = useHooks();
+}
+const ContentHeader = ({ setOpen, data }: IData) => {
+  const { navigate, get } = useHooks();
+  const persistRoot = JSON.parse(localStorage.getItem("persist") as string);
   const dispatch = useDispatch();
   return (
     <div>
@@ -27,10 +39,14 @@ const ContentHeader = ({
             size="large"
             gap={1}
           >
-            U
+            {get(data, "name", "-")[0]?.toUpperCase()}
           </Avatar>
-          <h1 className="text-base text-black font-semibold m-0">User</h1>
-          <h2 className="text-base text-[#b6afaf] ">Freelancer</h2>
+          <h1 className="text-base text-black font-semibold m-0">
+            {get(data, "name", "-")}
+          </h1>
+          <h2 className="text-base text-[#b6afaf] ">
+            {get(persistRoot, "role") === "customer" ? "Mijoz" : "Freelancer"}
+          </h2>
         </li>
         <li>
           <Link

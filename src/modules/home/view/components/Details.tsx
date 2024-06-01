@@ -1,3 +1,4 @@
+import DownloadFileComponent from "components/download-file";
 import dayjs from "dayjs";
 import useHooks from "hooks/useHooks";
 
@@ -16,7 +17,6 @@ interface IProps {
 
 const Details = ({ data }: IProps) => {
   const { get } = useHooks();
-  console.log(data);
   return (
     <div className="border-solid border-[1px] rounded-s-lg mt-12 p-8">
       <h2 className="text-2xl font-semibold">Ish Haqida</h2>
@@ -48,6 +48,7 @@ const Details = ({ data }: IProps) => {
             ))}
         </ul>
       </div>
+      <DownloadFileComponent baseUrl={`jobs/download/${get(data, "_id")}`} />
     </div>
   );
 };

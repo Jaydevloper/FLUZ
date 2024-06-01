@@ -1,4 +1,4 @@
-import { SendOutlined, UploadOutlined } from "@ant-design/icons";
+import { SendOutlined } from "@ant-design/icons";
 import { Button, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import ContainerContent from "components/container-content";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 const Create = ({ refetch }: { refetch: () => void }) => {
   const { get, navigate } = useHooks();
   const [inputs, setInputs] = useState({});
-  const { mutate, isLoading } = usePost({
+  const { mutate } = usePost({
     onSuccess: () => {
       refetch(), toast.success("Muvaffaqiyatli Yuborildi");
       navigate("");
@@ -116,32 +116,6 @@ const Create = ({ refetch }: { refetch: () => void }) => {
               className="mt-3"
               id="education"
             ></TextArea>
-            <label
-              className="text-base mt-6 font-semibold block"
-              htmlFor="file"
-            >
-              Qo'shimcah fayllarni yuklash
-            </label>
-            <input
-              onChange={(e) =>
-                setInputs({
-                  ...inputs,
-                  files: e.target.files ? e.target.files[0] : null,
-                })
-              }
-              className="visually-hidden"
-              type="file"
-              id="file"
-            />
-            <Button
-              loading={isLoading}
-              id="file"
-              className="mt-4"
-              icon={<UploadOutlined />}
-              onClick={() => document.getElementById("file")?.click()}
-            >
-              Yuklash
-            </Button>
           </div>
         </ContainerContent>
         <Button

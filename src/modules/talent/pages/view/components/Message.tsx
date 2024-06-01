@@ -23,7 +23,7 @@ const Message = ({ open = false, setOpen }: IMessageProps) => {
     url: `/messages/list/${get(persistRoot, "id")}`,
     name: "/message-list-me",
   });
-  const { mutate,isLoading } = usePost({
+  const { mutate, isLoading } = usePost({
     onSuccess: () => {
       refetch();
       setText("");
@@ -51,7 +51,7 @@ const Message = ({ open = false, setOpen }: IMessageProps) => {
               </div>
             ))}
             {get(data, "data", [])?.map((el) => (
-              <div key={el}>
+              <div key={get(el, "_id")}>
                 <div className="flex items-end gap-2 justify-end">
                   <Avatar className="bg-lime-500 mb-2" size="large" gap={1}>
                     {get(data, "user[0].name", "-")[0]?.toUpperCase()}
@@ -64,7 +64,11 @@ const Message = ({ open = false, setOpen }: IMessageProps) => {
             ))}
           </article>
           <div className="flex items-center gap-2">
-            <Input value={text} onChange={(e) => setText(e.target.value)} className="mt-8" />
+            <Input
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              className="mt-8"
+            />
             <Button
               onClick={() =>
                 mutate({

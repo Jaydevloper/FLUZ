@@ -16,6 +16,7 @@ export default defineConfig({
       services: path.resolve(__dirname, "./src/services"),
       features: path.resolve(__dirname, "./src/features"),
       components: path.resolve(__dirname, "./src/components"),
+      consts: path.resolve(__dirname, "./src/consts"),
     },
   },
   build: {

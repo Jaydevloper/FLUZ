@@ -41,7 +41,12 @@ const ProFileMain = ({ open, setOpen, data, refetch }: IData) => {
           >
             <EditIcon />
           </span>{" "}
-          <SkillModal open={open} setOpen={setOpen} />
+          <SkillModal
+            open={open}
+            setOpen={setOpen}
+            id={get(data, "_id", "")}
+            refetch={refetch}
+          />
         </h2>
         <ul className="flex items-center gap-3 mt-3">
           {get(data, "skills", [])?.map((el, index) => (
