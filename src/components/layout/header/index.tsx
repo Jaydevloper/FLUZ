@@ -1,11 +1,43 @@
 import { DownOutlined } from "@ant-design/icons";
-import { Avatar, Dropdown, Input, Layout, Space, Tooltip } from "antd";
+import { Avatar, Dropdown, Layout, Space, Tooltip } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
+import { roles } from "consts";
+import useAccess from "hooks/useAccess";
+import useGet from "hooks/useGet";
+import useHooks from "hooks/useHooks";
 import { MenuProps } from "rc-menu";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import ContentHeader from "./components/Content";
 
 const HeaderMenu = () => {
+  const { get } = useHooks();
+  const [open, setOpen] = useState<boolean>(false);
+  const { data } = useGet({
+    url: "/users/info",
+    name: "/user-info",
+  });
+  const isCustomer = useAccess(roles.customer);
+  const items: MenuProps["items"] = [
+    ...(isCustomer
+      ? [
+          {
+            key: "2",
+            label: <Link to="/jobs/list">Yaratilgan Ishlar ro'yxati</Link>,
+          },
+          {
+            key: "3",
+            label: <Link to="/jobs/create">Ish Joylash</Link>,
+          },
+        ]
+      : [
+          {
+            key: "1",
+            label: <Link to="/jobs/saved/1">Saqlangan Ishlar</Link>,
+          },
+        ]),
+  ];
+
   return (
     <div>
       <Layout>
@@ -22,52 +54,63 @@ const HeaderMenu = () => {
                 </Space>
               </a>
             </Dropdown>
+            {isCustomer ? (
+              <Link
+                className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
+                to={"/talents"}
+              >
+                Ta'lantlar
+              </Link>
+            ) : null}
             <Link
               className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
-              to={"/payment/history/"}
+              to={"/message"}
             >
-              To'lov Tarixi
+              Chat
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <Input
-              className="rounded-[8px] text-base px-[35px] py-[8px] w-[420px]"
-              type="search"
-              placeholder="input search"
-            />
             <Tooltip
+              open={open}
               placement="bottom"
               color={"#fff"}
-              title={<ContentHeader />}
-              trigger="click"
+              title={
+                <ContentHeader
+                  data={get(data, "userInfo[0]", initialUserData)}
+                  setOpen={setOpen}
+                />
+              }
+              trigger={["click"]}
             >
               <Avatar
                 className="bg-[#f56a00] cursor-pointer"
+                onClick={() => setOpen(!open)}
                 size="large"
                 gap={1}
               >
-                U
+                {get(data, "userInfo[0].name", "-")[0]?.toUpperCase()}
               </Avatar>
             </Tooltip>
           </div>
         </Header>
-        <Content className="mt-[64px]  container  ">
+        <Content className="mt-[64px] container">
           <Outlet />
         </Content>
       </Layout>
     </div>
   );
 };
+const initialUserData = {
+  country: "",
+  createdAt: "",
+  createdBy: "",
+  description: "",
+  education: "",
+  name: "",
+  payment: 0,
+  skills: [""],
+  title: "",
+  _id: "",
+};
 
 export default HeaderMenu;
-
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: <Link to="/jobs/saved/1">Saqlangan Ishlar</Link>,
-  },
-  {
-    key: "2",
-    label: <Link to="/jobs/my-jobs/1">Mening Ishlarim</Link>,
-  },
-];

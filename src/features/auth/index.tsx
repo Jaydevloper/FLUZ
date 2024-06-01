@@ -4,28 +4,32 @@ import { IAuth } from "./auth.type";
 const initialState: IAuth = {
   isLogin: false,
   token: null,
+  id: null,
+  role: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    SignIn: (state, action) => {
-      localStorage.setItem("token", action.payload || "");
+    LogIn: (state, action) => {
+      localStorage.setItem("token", action.payload.token || "");
       state.isLogin = true;
-      state.token = action.payload;
-    },
-    SignUp: (state, action) => {
-      localStorage.setItem("token", action.payload || "");
-      state.isLogin = true;
-      state.token = action.payload;
+      state.token = action.payload.token;
+      state.role = action.payload.user.role;
+      state.id = action.payload.user._id;
+      localStorage.setItem("persist", JSON.stringify(state));
+      window.location.href = "/";
     },
     SignOut: (state) => {
+      localStorage.clear();
       state.isLogin = false;
       state.token = null;
+      state.role = null;
+      window.location.href = "/";
     },
   },
 });
 
-export const { SignIn, SignUp, SignOut } = authSlice.actions;
+export const { LogIn, SignOut } = authSlice.actions;
 export default authSlice.reducer;

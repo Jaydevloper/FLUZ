@@ -1,65 +1,30 @@
+/* eslint-disable react-refresh/only-export-components */
 import Layout from "components/layout";
 import Spinner from "components/loader";
-import MyJobs from "modules/jobs/pages/my-jobs";
-import SavedJobs from "modules/jobs/pages/saved";
-import PaymentHistory from "modules/payment/pages/history";
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import { PrivateRoutes } from "./PrivateRoutes";
 
-const Home = lazy(() => import("modules/home"));
-const ProfileInfo = lazy(() => import("modules/profile/pages/info"));
+const SignUp = lazy(() => import("pages/SignUp"));
+const SignIn = lazy(() => import("pages/SignIn"));
+
+const NotFound = lazy(() => import("pages/notfound"));
 const router = () => {
   return createBrowserRouter([
     {
       path: "/sign-up",
-      element: <div>SignUp</div>,
+      element: <SignUp />,
     },
     {
       path: "/sign-in",
-      element: <div>SignUp</div>,
+      element: <SignIn />,
     },
     {
       path: "/",
-      errorElement: <div>Error</div>,
+      errorElement: <NotFound />,
       element: <Layout />,
       loader: Spinner,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-        {
-          path: "/jobs/",
-          children: [
-            {
-              path: "saved/:id",
-              element: <SavedJobs />,
-            },
-            {
-              path: "my-jobs/:id",
-              element: <MyJobs />,
-            },
-          ],
-        },
-        {
-          path: "/profile",
-          children: [
-            {
-              index: true,
-              element: <ProfileInfo />,
-            },
-          ],
-        },
-        {
-          path: "/payment/",
-          children: [
-            {
-              path: "history/",
-              element: <PaymentHistory />,
-            },
-          ],
-        },
-      ],
+      children: PrivateRoutes(),
     },
   ]);
 };

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const List = () => {
   return (
-    <div>
+    <div className="mt-12">
       <ul>
         <li className="bg-[#f1f1f1] p-4 rounded-sm">
           <Link className="text-[#108a00] text-base font-bold" to="/">
