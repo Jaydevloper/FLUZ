@@ -27,7 +27,7 @@ const Chat = () => {
     onError: (err) =>
       toast.error(get(err, "response.data.message", "Xatolik yuz berdi")),
   });
-
+  console.log(Data);
   return (
     <div className="pt-28">
       <div className="flex  justify-between">
