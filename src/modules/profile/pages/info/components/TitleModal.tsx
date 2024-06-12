@@ -60,7 +60,7 @@ const TitleModal = (props: IData) => {
           type="number"
           onChange={(e) => setFields({ ...fields, payment: e.target.value })}
           className="mb-2"
-          placeholder="sarlavha"
+          placeholder="to'lov"
         />
         <TextArea
           onChange={(e) =>
