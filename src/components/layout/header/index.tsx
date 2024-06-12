@@ -59,7 +59,7 @@ const HeaderMenu = () => {
                 className="text-white hover:text-[#108a00] text-base font-semibold ml-12"
                 to={"/talents"}
               >
-                Ta'lantlar
+                Frilanserlar
               </Link>
             ) : null}
             <Link

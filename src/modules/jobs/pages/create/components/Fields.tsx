@@ -130,7 +130,6 @@ const CreateFields = () => {
               id="file"
             />
             <Button
-              loading={isLoading}
               id="file"
               className="mt-4"
               icon={<UploadOutlined />}
@@ -138,9 +137,13 @@ const CreateFields = () => {
             >
               Yuklash
             </Button>
+            {get(inputs, "files.name", null) ? (
+              <p>{get(inputs, "files.name", null)}</p>
+            ) : null}
           </div>
         </ContainerContent>
         <Button
+          loading={isLoading}
           className="bg-[#108a00] text-white w-[300px] mt-8 ml-auto mr-auto block"
           htmlType="submit"
           icon={<SendOutlined />}
