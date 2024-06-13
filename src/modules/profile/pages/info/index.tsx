@@ -6,9 +6,12 @@ import Create from "./components/Create";
 import ProfileFooter from "./components/ProfileFooter";
 import ProfileHeader from "./components/ProfileHeader";
 import ProFileMain from "./components/ProfileMain";
+import useAccess from "hooks/useAccess";
+import { roles } from "consts";
 
 const ProfileInfo = () => {
   const { get, navigate, qs, query } = useHooks();
+  const isCustomer = useAccess(roles.customer);
   const { data, refetch } = useGet({
     url: "/users/info",
     name: "/user-info",
@@ -36,12 +39,14 @@ const ProfileInfo = () => {
               open={openModal}
               setOpen={setOpenModal}
             />
-            <ProFileMain
-              refetch={refetch}
-              open={openModal}
-              setOpen={setOpenModal}
-              data={get(data, "userInfo[0]", initialUserData)}
-            />
+            {!isCustomer ? (
+              <ProFileMain
+                refetch={refetch}
+                open={openModal}
+                setOpen={setOpenModal}
+                data={get(data, "userInfo[0]", initialUserData)}
+              />
+            ) : null}
           </div>
           <footer>
             <ProfileFooter
